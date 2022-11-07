@@ -1,13 +1,24 @@
+import { useNavigation } from "@react-navigation/native";
 import { Row, Text, Pressable } from "native-base";
 
 export function EmptyPoolList() {
+  const { navigate } = useNavigation();
+
+  function handleGoToSearchCodeScreen() {
+    navigate("findPool");
+  }
+
+  function handleGoToCreatePoolScreen() {
+    navigate("newPool");
+  }
+
   return (
     <Row flexWrap="wrap" justifyContent="center">
       <Text color="white" fontSize="sm" textAlign="center">
         Você ainda não está participando de {"\n"} nenhum bolão, que tal
       </Text>
 
-      <Pressable>
+      <Pressable onPress={handleGoToSearchCodeScreen}>
         <Text
           textDecorationLine="underline"
           color="yellow.500"
@@ -21,7 +32,7 @@ export function EmptyPoolList() {
         ou
       </Text>
 
-      <Pressable>
+      <Pressable onPress={handleGoToCreatePoolScreen}>
         <Text textDecorationLine="underline" color="yellow.500">
           criar um novo
         </Text>
